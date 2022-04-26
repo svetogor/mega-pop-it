@@ -59,7 +59,7 @@
         const audio = document.querySelector('audio');
 
         document.querySelectorAll('.popit__pimple').forEach((pimple) => {
-            pimple.addEventListener('dblclick', (event) => {
+            pimple.addEventListener('click', (event) => {
                 event.target.classList.add('popit__pimple_pressed');
                 audio.play();
             });
