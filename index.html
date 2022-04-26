@@ -30,20 +30,17 @@
             height: var(--pimple-size);
             margin-right: var(--pimple-margin);
             cursor: pointer;
-            background-image: radial-gradient(#00B956, #00B956);
+            background-color: #00B956;
             border-radius: 50%;
+            box-shadow: 0 20px 30px 0 rgba(255, 255, 255, 0.75) inset, 0 -10px 10px 0 rgba(0, 0, 0, 0.5) inset;
         }
 
         .popit__pimple_purple {
-            background-image: radial-gradient(#731982, #731982);
+            background-color: #731982;
         }
 
         .popit__pimple_pressed {
-            background-image: radial-gradient(#00B956, #003d1d);
-        }
-
-        .popit__pimple_pressed.popit__pimple_purple {
-            background-image: radial-gradient(#731982, #2a0431);
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.4) inset, 0 -10px 5px 0 rgba(255, 255, 255, 0.5) inset;
         }
     </style>
 
@@ -57,10 +54,11 @@
 
     <script>
         const audio = document.querySelector('audio');
+        const pressedClassName = 'popit__pimple_pressed';
 
         document.querySelectorAll('.popit__pimple').forEach((pimple) => {
             pimple.addEventListener('click', (event) => {
-                event.target.classList.add('popit__pimple_pressed');
+                event.target.classList.toggle(pressedClassName);
                 audio.play();
             });
         });
