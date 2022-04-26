@@ -13,6 +13,7 @@
         html,
         body {
             height: 100%;
+            background-color: #3333330D;
         }
 
         .popit {
@@ -30,17 +31,27 @@
             height: var(--pimple-size);
             margin-right: var(--pimple-margin);
             cursor: pointer;
-            background-color: #00B956;
+            background-color: #10E272;
+            background-image: radial-gradient(#13ff81, #10E272, #00B956);
+            box-shadow: 0 20px 30px 0 rgba(19, 255, 129, 1) inset, 0 -10px 10px 0 rgba(0, 0, 0, 0.5) inset;
             border-radius: 50%;
-            box-shadow: 0 20px 30px 0 rgba(255, 255, 255, 0.75) inset, 0 -10px 10px 0 rgba(0, 0, 0, 0.5) inset;
+            transition: all 0.2s;
         }
 
         .popit__pimple_purple {
-            background-color: #731982;
+            background-color: #A500BF;
+            background-image: radial-gradient(#d500f7, #A500BF, #731982);
+            box-shadow: 0 20px 30px 0 rgba(213, 0, 247, 1) inset, 0 -10px 10px 0 rgba(0, 0, 0, 0.5) inset;
         }
 
         .popit__pimple_pressed {
-            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.4) inset, 0 -10px 5px 0 rgba(255, 255, 255, 0.5) inset;
+            background-image: none;
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.4) inset, 0 -10px 10px 0 rgba(19, 255, 129, 1) inset;
+        }
+
+        .popit__pimple_pressed.popit__pimple_purple {
+            background-image: none;
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.4) inset, 0 -10px 10px 0 rgba(165, 0, 191, 1) inset;
         }
     </style>
 
@@ -50,16 +61,21 @@
         <div class="popit__pimple popit__pimple_purple"></div>
     </div>
 
-    <audio src="pop.m4a" preload></audio>
+    <audio src="pop.m4a" preload id="audioPop"></audio>
+    <audio src="unpop.m4a" preload id="audioUnpop"></audio>
 
     <script>
-        const audio = document.querySelector('audio');
+        const audioPop = document.querySelector('#audioPop');
+        const audioUnpop = document.querySelector('#audioUnpop');
         const pressedClassName = 'popit__pimple_pressed';
 
         document.querySelectorAll('.popit__pimple').forEach((pimple) => {
             pimple.addEventListener('click', (event) => {
                 event.target.classList.toggle(pressedClassName);
-                audio.play();
+
+                Array.from(event.target.classList).includes(pressedClassName)
+                    ? audioPop.play()
+                    : audioUnpop.play();
             });
         });
     </script>
